@@ -4,13 +4,8 @@ import { createOpenAI } from '@ai-sdk/openai';
 
 export function getOpenAIModel(apiKey: string) {
   const openai = createOpenAI({
-    apiKey: 'sk-6x3qT6O7kpD3LpOWOfeHwP7CtLXJm56qOpYg23J7E5WuEBl1',
-
-    // /*
-    //  * baseURL: 'https://yunwu.zeabur.app/v1',
-    //  * baseURL: 'https://openai.linktre.cc/v1',
-    //  */
-    baseURL: 'https://yunwu.ai/v1',
+    apiKey: '',
+    baseURL: '',
   });
 
   return openai('gpt-4-turbo');
