@@ -108,7 +108,13 @@ pub fn read_text() -> Result<String, String> {
   // 给剪贴板更多时间更新
   // thread::sleep(Duration::from_millis(200));
   // 读取剪贴板内容
-  read_text_cross()
+  // read_text_cross()
+
+
+  let mut clipboard = arboard::Clipboard::new().unwrap();
+  println!("Clipboard text was: {}", clipboard.get_text().unwrap());
+  Ok(clipboard.get_text().unwrap())
+
 }
 
 fn read_text_cross() -> Result<String, String> {
