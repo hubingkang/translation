@@ -4,6 +4,8 @@
 // mod text_selection;
 
 // use text_selection::get_selected_text;
+mod clip;
+mod command;
 
 fn main() {
     // tauri::Builder::default()
@@ -37,8 +39,32 @@ fn main() {
 
             Ok(())
         })
+        .invoke_handler(tauri::generate_handler![command::get_selection_text])
         .plugin(tauri_plugin_clipboard_manager::init())
         .plugin(tauri_plugin_shell::init())
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
+
+
+    // use enigo::{
+    //     Direction::{Click, Press, Release},
+    //     Enigo, Key, Keyboard, Settings,
+    // };
+    // use std::thread;
+    // use std::time::Duration;
+    // thread::sleep(Duration::from_secs(2));
+    // let mut enigo = Enigo::new(&Settings::default()).unwrap();
+
+    // // write text
+    // enigo
+    //     .text("Hello World! here is a lot of text  ❤️")
+    //     .unwrap();
+
+    // // select all
+    // enigo.key(Key::Command, Press).unwrap();
+    // enigo.key(Key::Unicode('c'), Click).unwrap();
+    // enigo.key(Key::Command, Release).unwrap();
+
+    // println!("Press any key to continue...");
+
 }
