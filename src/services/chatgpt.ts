@@ -1,14 +1,18 @@
 // import OpenAI from 'openai';
-import { streamText as _streamText, convertToCoreMessages, generateText } from 'ai';
-import { createOpenAI } from '@ai-sdk/openai';
+import {
+  streamText as _streamText,
+  convertToCoreMessages,
+  generateText,
+} from 'ai'
+import { createOpenAI } from '@ai-sdk/openai'
 
-export function getOpenAIModel(apiKey: string) {
+export function getOpenAIModel() {
   const openai = createOpenAI({
-    apiKey: '',
-    baseURL: '',
-  });
+    apiKey: import.meta.env.VITE_API_KEY,
+    baseURL: import.meta.env.VITE_API_BASE_URL,
+  })
 
-  return openai('gpt-4-turbo');
+  return openai('gpt-4o-mini')
 
   // return openai('claude-3-5-sonnet-20241022', {});
 }
@@ -37,17 +41,17 @@ export const checkGrammar = async (content: string) => {
     //   // ...options,
     // });
 
-    console.log('content', content);
-    
-    const { text } = await generateText({
-      model: getOpenAIModel('gpt-4-turbo'),
-      prompt: `You are an English grammar checker. Analyze the following text and provide feedback on any grammar errors. If there are no errors, say so. Be concise and clear.\n\n${content}`,
-    });
+    console.log('content', content)
 
-    return text;
+    const { text } = await generateText({
+      model: getOpenAIModel(),
+      prompt: `You are an English grammar checker. Analyze the following text and provide feedback on any grammar errors. If there are no errors, say so. Be concise and clear.\n\n${content}`,
+    })
+
+    return text
     // return response.choices[0].message.content;
   } catch (error) {
-    console.error('Error checking grammar:', error);
-    throw error;
+    console.error('Error checking grammar:', error)
+    throw error
   }
-};
+}
