@@ -45,7 +45,7 @@ export const checkGrammar = async (content: string) => {
 
     const { text } = await generateText({
       model: getOpenAIModel(),
-      prompt: `You are an English grammar checker. Analyze the following text and provide feedback on any grammar errors. If there are no errors, say so. Be concise and clear.\n\n${content}`,
+      prompt: `您是一个英语助手，针对中文用户，分析以下文本并提供关于任何语法错误的反馈、或者提供更贴切的表达。如果没有，请说明。简洁明了。\n\n${content}`,
     })
 
     return text
